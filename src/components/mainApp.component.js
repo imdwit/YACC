@@ -52,7 +52,6 @@ function MainAppCtrl(TasksService, $scope, $filter) {
   $scope.$watch(
     scope => $filter('filter')(this.tasks, { completed: true }).length,
     (curr, prev) => {
-      console.log('hellooooo', curr, prev)
       if (curr !== prev) {
         this.progress = curr / this.tasks.length;
       }
