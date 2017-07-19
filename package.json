@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start",
     "start": "npm run html && npm run browser & npm run watch",
     "browser": "browser-sync start --browser \"google chrome\" --server --ss build --files build/*",
     "watch": "webpack -w",
@@ -14,15 +14,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "angular-mocks": "^1.6.5",
     "browser-sync": "^2.18.12",
     "jasmine-core": "^2.6.4",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.0",
+    "karma-webpack": "^2.0.4",
     "webpack": "^3.3.0"
   },
   "dependencies": {
     "angular": "^1.6.5",
-    "karma-webpack": "^2.0.4"
+    "lodash.samplesize": "^4.2.0"
   }
 }
