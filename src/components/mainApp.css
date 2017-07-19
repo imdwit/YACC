@@ -1,0 +1,28 @@
+body {
+  font-size: 10px;
+}
+
+.main {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.main__title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+
+.tasks__task {
+  margin-bottom: 1rem;
+}
+
+.task__task {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.task__task--completed {
+  text-decoration: line-through;
+  color: lightgray;
+}
