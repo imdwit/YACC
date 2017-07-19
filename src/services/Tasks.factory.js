@@ -12,7 +12,7 @@ function TasksService() {
     'buy new car',
     'eat lunch',
     'drink a beer',
-  ];
+  ].map(task => ({task, completed: false}));
 
 
   return {
