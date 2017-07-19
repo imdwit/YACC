@@ -17,4 +17,17 @@ describe('MainApp', () => {
     $ctrl.$onInit();
     expect($ctrl.tasks.length).toBe(6);
   });
+
+  it('should toggle a task\'s completed prop', () => {
+    const $ctrl = $componentController('mainApp', null, null);
+    $ctrl.$onInit();
+    
+    expect($ctrl.toggleComplete).toBeDefined();
+
+    const $index = 3;
+    $ctrl.toggleComplete($index);
+    expect($ctrl.tasks[$index].completed).toBe(true);
+    $ctrl.toggleComplete($index);
+    expect($ctrl.tasks[$index].completed).toBe(false);
+  });
 });
