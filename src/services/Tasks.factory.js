@@ -1,3 +1,4 @@
+import sampleSize from 'lodash.samplesize';
 function TasksService() {
 
   const tasks = [
@@ -6,6 +7,11 @@ function TasksService() {
     'fix other car',
     '???',
     'profit',
+    'quit job',
+    'find new job',
+    'buy new car',
+    'eat lunch',
+    'drink a beer',
   ];
 
 
@@ -13,6 +19,9 @@ function TasksService() {
     fetchTasks() {
       return tasks;
     },
+    fetchRandomTasks() {
+      return sampleSize(tasks, 6);
+    }
   };
 }
 
