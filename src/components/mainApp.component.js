@@ -41,17 +41,28 @@ const mainApp = {
 
 function MainAppCtrl(TasksService, $scope, $filter) {
   this.$onInit = () => {
+    // receives 6 random tasks
     this.tasks = TasksService.fetchRandomTasks();
+    // intializes our progress to 0;
     this.progress = 0;
   };
 
   this.toggleComplete = $index => {
+    // toggles the completed value of a task at the index;
     this.tasks[$index].completed = !this.tasks[$index].completed;
   };
 
+  /* 
+    computes the progress of completed vs non-complete tasks
+    by filtering completed tasks and counting how many there are
+    and dividing it by the total number of tasks
+
+     3 completed / 6 total = 50% complete
+  */
   $scope.$watch(
     scope => $filter('filter')(this.tasks, { completed: true }).length,
     (curr, prev) => {
+      // curr is the number of completed tasks
       if (curr !== prev) {
         this.progress = curr / this.tasks.length;
       }
