@@ -17,6 +17,20 @@ const template = `
           </p>
       </div>
     </div>
+    <div class="progress">
+      <div
+        class="progress__circle"
+        task-progress
+        progress="$ctrl.progress"
+        thickness="8"
+        size="125"
+        fill='{ "gradient": [["red", ".2"], ["green", ".3"], ["blue", ".8"]] }'
+        xfill="purple"
+        animation='{"duration": 750}'
+        line-cap="round"
+      >
+      <p class="progress__value">{{$ctrl.progress * 100 | number : 0}}%</div>
+    </div>
   </div>
 `;
 
@@ -25,17 +39,27 @@ const mainApp = {
   template,
 };
 
-function MainAppCtrl(TasksService) {
+function MainAppCtrl(TasksService, $scope, $filter) {
   this.$onInit = () => {
     this.tasks = TasksService.fetchRandomTasks();
+    this.progress = 0;
   };
-  
-  this.toggleComplete = ($index) => {
+
+  this.toggleComplete = $index => {
     this.tasks[$index].completed = !this.tasks[$index].completed;
   };
+
+  $scope.$watch(
+    scope => $filter('filter')(this.tasks, { completed: true }).length,
+    (curr, prev) => {
+      console.log('hellooooo', curr, prev)
+      if (curr !== prev) {
+        this.progress = curr / this.tasks.length;
+      }
+    }
+  );
 }
 
-MainAppCtrl.$inject = ['TasksService'];
-
+MainAppCtrl.$inject = ['TasksService', '$scope', '$filter'];
 
 export default mainApp;
